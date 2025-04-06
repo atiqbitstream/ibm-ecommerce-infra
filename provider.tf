@@ -8,5 +8,5 @@ terraform {
 }
 
 provider "ibm"{
-    region = "au-syd"
+    region = var.region
 }
