@@ -1,7 +1,12 @@
 resource "ibm_is_vpc" "ecommerce_vpc" {
   name = "ecommerce-vpc"
-  resource_group= "Default"
+  resource_group= data.ibm_resource_group.default.id
 }
+
+data "ibm_resource_group" "default" {
+  name = "Default"
+}
+
 
 resource "ibm_is_subnet" "ecommmerce_subnet" {
   name = "ecommerce-subnet"
@@ -23,7 +28,7 @@ resource "ibm_is_instance" "web_server" {
   keys = [ibm_is_ssh_key.ssh_key.id]
   image = "ibm-ubuntu-22-04-3-minimal-amd64-2"
   profile = "cx2-2x4"
-  resource_group = "Default"
+  resource_group = data.ibm_resource_group.default.id
 
   primary_network_interface{
     subnet = ibm_is_subnet.ecommmerce_subnet.id
