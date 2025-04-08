@@ -7,6 +7,10 @@ data "ibm_resource_group" "default" {
   name = "Default"
 }
 
+data "ibm_is_image" "ubuntu_image" {
+    name = "ibm-ubuntu-22-04-5-minimal-amd64-2"
+  
+}
 
 resource "ibm_is_subnet" "ecommmerce_subnet" {
   name = "ecommerce-subnet"
@@ -26,7 +30,7 @@ resource "ibm_is_instance" "web_server" {
   vpc = ibm_is_vpc.ecommerce_vpc.id
   zone = "${var.region}-1"
   keys = [ibm_is_ssh_key.ssh_key.id]
-  image = "ibm-ubuntu-22-04-5-minimal-amd64-2"
+  image = data.ibm_is_image.ubuntu_image.id
   profile = "cx2-2x4"
   resource_group = data.ibm_resource_group.default.id
 
