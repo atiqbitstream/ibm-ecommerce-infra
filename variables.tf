@@ -4,6 +4,12 @@ variable "IBMcloud_api_key"{
   sensitive = true
 }
 
+variable "ssh_public_key"{
+  description = "The public SSH Key for accessing the instance"
+  type = string
+  sensitive = true
+}
+
 
 variable "region" {
   default = "eu-gb"
