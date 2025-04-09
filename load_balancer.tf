@@ -2,6 +2,11 @@ resource "ibm_is_lb" "web_lb" {
     name = "web-lb"
     subnets = [ibm_is_subnet.ecommmerce_subnet.id]
     type = "public"
+
+    timeouts{
+      create = "20m"
+      delete = "10m"
+    }
   
 }
 
@@ -15,6 +20,10 @@ resource "ibm_is_lb_pool" "web_pool" {
   health_timeout = 2
   health_type = "http"
   health_monitor_url = "/"
+
+  timeouts {
+    create = "15m"
+  }
 }
 #extras
 resource "ibm_is_lb_listener" "web_listener" {
@@ -24,11 +33,17 @@ resource "ibm_is_lb_listener" "web_listener" {
   default_pool = ibm_is_lb_pool.web_pool.id
 }
 
-resource "ibm_is_lb_pool_member" "web_members" {
-  count = 2
+resource "ibm_is_lb_pool_member" "web_asg_member" {
+
   lb = ibm_is_lb.web_lb.id
-  pool = ibm_is_lb_pool.web_pool.pool_id
+  pool = ibm_is_lb_pool.web_pool.id
   port = 80
   target_id = ibm_is_instance_group.web_asg.id
-  target_address = "0.0.0.0"
+
+  depends_on = [ 
+    ibm_is_instance_group.web_asg,
+    ibm_is_lb_pool.web_pool
+   ]
+  
 }
+
