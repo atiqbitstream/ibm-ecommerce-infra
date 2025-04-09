@@ -6,7 +6,7 @@ resource "ibm_is_lb" "web_lb" {
 }
 
 resource "ibm_is_lb_pool" "web_pool" {
-  name = "web_pool"
+  name = "web-pool"
   lb = ibm_is_lb.web_lb.id
   algorithm = "round_robin"
   protocol = "http"

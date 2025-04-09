@@ -1,5 +1,5 @@
 resource "ibm_is_instance_template" "web_template" {
-  name = "web_template"
+  name = "web-template"
   image = data.ibm_is_image.ubuntu_image.id
   profile = "cx2-2x4"
   keys = [ibm_is_ssh_key.ssh_key.id]

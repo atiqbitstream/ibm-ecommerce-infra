@@ -3,13 +3,14 @@ resource "ibm_database" "postgres" {
     plan = "standard"
     service = "databases-for-postgresql"
     location = var.region
-    resource_group_id = data.ibm_resource_group.id
+    resource_group_id = data.ibm_resource_group.default.id
+    service_endpoints = "public"
 
-    adminpassword = "atiq123!"
+    adminpassword = "Aq7mF2z4W9pX8R1"
 
     users{
         name = "admin"
-        password = "atiq123!"
+        password = "Aq7mF2z4W9pX8R1"
     }
   
 }
