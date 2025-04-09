@@ -16,7 +16,7 @@ resource "ibm_is_lb_pool" "web_pool" {
   health_monitor_url = "/"
 }
 
-resource "imb_is_lb_pool_member" "web_members" {
+resource "ibm_is_lb_pool_member" "web_members" {
   count = 2
   lb = ibm_is_lb.web_lb.id
   pool = ibm_is_lb_pool.web_pool.pool_id
