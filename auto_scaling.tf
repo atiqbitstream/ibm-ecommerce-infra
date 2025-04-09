@@ -7,7 +7,7 @@ resource "ibm_is_instance_template" "web_template" {
   zone = "${var.region}-1"
   vpc = ibm_is_vpc.ecommerce_vpc.id
 
-
+#xtras
   primary_network_interface{
     subnet = ibm_is_subnet.ecommmerce_subnet.id
   }

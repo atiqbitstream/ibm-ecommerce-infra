@@ -16,7 +16,7 @@ resource "ibm_is_lb_pool" "web_pool" {
   health_type = "http"
   health_monitor_url = "/"
 }
-
+#extras
 resource "ibm_is_lb_listener" "web_listener" {
   lb = ibm_is_lb.web_lb.id
   port = 80

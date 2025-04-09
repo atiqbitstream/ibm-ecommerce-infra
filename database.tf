@@ -12,5 +12,5 @@ resource "ibm_database" "postgres" {
         name = "admin"
         password = "Aq7mF2z4W9pX8R1"
     }
-  
+  #extras
 }

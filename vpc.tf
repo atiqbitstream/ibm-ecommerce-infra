@@ -7,6 +7,8 @@ data "ibm_resource_group" "default" {
   name = "Default"
 }
 
+#extras
+
 data "ibm_is_image" "ubuntu_image" {
     name = "ibm-ubuntu-22-04-5-minimal-amd64-2"
   
