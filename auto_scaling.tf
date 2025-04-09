@@ -11,7 +11,7 @@ resource "ibm_is_instance_template" "web_template" {
   }
 }
 
-resource "ibm_is_auto_scaling" "web_asg" {
+resource "ibm_is_auto_scale_group" "web_asg" {
   name = "web-asg"
   instance_template = ibm_is_instance_template.web_template.id
   subnets = [ibm_is_subnet.ecommmerce_subnet.id]
