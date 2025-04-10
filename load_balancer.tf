@@ -20,6 +20,7 @@ resource "ibm_is_lb_pool" "web_pool" {
   health_timeout = 2
   health_type = "http"
   health_monitor_url = "/"
+  depends_on = [ ibm_is_lb.web_lb ]
 
   # timeouts {
   #   create = "15m"
@@ -31,6 +32,7 @@ resource "ibm_is_lb_listener" "web_listener" {
   port = 80
   protocol = "http"
   default_pool = ibm_is_lb_pool.web_pool.id
+  depends_on = [ ibm_is_lb_pool.web_pool ]
 }
 
 resource "ibm_is_lb_pool_member" "web_asg_member" {
@@ -39,6 +41,7 @@ resource "ibm_is_lb_pool_member" "web_asg_member" {
   pool = ibm_is_lb_pool.web_pool.id
   port = 80
   target_id = ibm_is_instance_group.web_asg.id
+
 
   depends_on = [ 
     ibm_is_instance_group.web_asg,

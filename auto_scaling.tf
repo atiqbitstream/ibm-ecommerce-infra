@@ -6,6 +6,7 @@ resource "ibm_is_instance_template" "web_template" {
   resource_group = data.ibm_resource_group.default.id
   zone = "${var.region}-1"
   vpc = ibm_is_vpc.ecommerce_vpc.id
+  depends_on = [ ibm_is_subnet.ecommerce_subnet ]
 
 #xtras
   primary_network_interface{
@@ -23,6 +24,7 @@ resource "ibm_is_instance_group" "web_asg" {
   subnets = [ibm_is_subnet.ecommerce_subnet.id]
   instance_count = 2
   resource_group = data.ibm_resource_group.default.id
+  depends_on = [ ibm_is_instance_template.web_template ]
 
   lifecycle {
     create_before_destroy = true
