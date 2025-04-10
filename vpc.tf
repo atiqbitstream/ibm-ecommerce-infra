@@ -14,7 +14,7 @@ data "ibm_is_image" "ubuntu_image" {
   
 }
 
-resource "ibm_is_subnet" "ecommmerce_subnet" {
+resource "ibm_is_subnet" "ecommerce_subnet" {
   name = "ecommerce-subnet"
   vpc = ibm_is_vpc.ecommerce_vpc.id
   zone = "${var.region}-1"
@@ -37,6 +37,6 @@ resource "ibm_is_instance" "web_server" {
   resource_group = data.ibm_resource_group.default.id
 
   primary_network_interface{
-    subnet = ibm_is_subnet.ecommmerce_subnet.id
+    subnet = ibm_is_subnet.ecommerce_subnet.id
   }
 }

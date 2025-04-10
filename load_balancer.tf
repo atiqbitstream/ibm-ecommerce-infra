@@ -3,10 +3,10 @@ resource "ibm_is_lb" "web_lb" {
     subnets = [ibm_is_subnet.ecommmerce_subnet.id]
     type = "public"
 
-    timeouts{
-      create = "20m"
-      delete = "10m"
-    }
+    # timeouts{
+    #   create = "20m"
+    #   delete = "10m"
+    # }
   
 }
 
@@ -21,9 +21,9 @@ resource "ibm_is_lb_pool" "web_pool" {
   health_type = "http"
   health_monitor_url = "/"
 
-  timeouts {
-    create = "15m"
-  }
+  # timeouts {
+  #   create = "15m"
+  # }
 }
 #extras
 resource "ibm_is_lb_listener" "web_listener" {
