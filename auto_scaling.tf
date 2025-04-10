@@ -28,6 +28,7 @@ resource "ibm_is_instance_group" "web_asg" {
   load_balancer_pool = ibm_is_lb_pool.web_pool.pool_id
   application_port = 80
   depends_on = [ ibm_is_instance_template.web_template,
+  ibm_is_instance_group_manager.web_asg_manager
    ]
 
   lifecycle {
@@ -41,7 +42,7 @@ resource "ibm_is_instance_group_manager" "web_asg_manager" {
     aggregation_window = 120
     cooldown = 300
     manager_type = "autoscale"
-    enable_manager = true
+    enable_manager = false
     max_membership_count = 5
     min_membership_count = 2
  
