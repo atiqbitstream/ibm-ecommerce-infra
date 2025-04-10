@@ -22,7 +22,7 @@ resource "ibm_is_instance_group" "web_asg" {
   name = "web-asg"
   instance_template = ibm_is_instance_template.web_template.id
   subnets = [ibm_is_subnet.ecommerce_subnet.id]
-  instance_count = 0
+  instance_count = 2
   resource_group = data.ibm_resource_group.default.id
   load_balancer = ibm_is_lb.web_lb.id
   load_balancer_pool = ibm_is_lb_pool.web_pool.pool_id
