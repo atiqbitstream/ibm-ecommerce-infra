@@ -35,18 +35,18 @@ resource "ibm_is_lb_listener" "web_listener" {
   depends_on = [ ibm_is_lb_pool.web_pool ]
 }
 
-resource "ibm_is_lb_pool_member" "web_asg_member" {
+# resource "ibm_is_lb_pool_member" "web_asg_member" {
 
-  lb = ibm_is_lb.web_lb.id
-  pool = ibm_is_lb_pool.web_pool.id
-  port = 80
-  target_id = ibm_is_instance_group.web_asg.id
+#   lb = ibm_is_lb.web_lb.id
+#   pool = ibm_is_lb_pool.web_pool.id
+#   port = 80
+#   target_id = ibm_is_instance_group.web_asg.id
 
 
-  depends_on = [ 
-    ibm_is_instance_group.web_asg,
-    ibm_is_lb_pool.web_pool
-   ]
+#   depends_on = [ 
+#     ibm_is_instance_group.web_asg,
+#     ibm_is_lb_pool.web_pool
+#    ]
   
-}
+# }
 

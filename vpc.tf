@@ -27,16 +27,16 @@ resource "ibm_is_ssh_key" "ssh_key" {
   
 }
 
-resource "ibm_is_instance" "web_server" {
-  name = "web-server-1"
-  vpc = ibm_is_vpc.ecommerce_vpc.id
-  zone = "${var.region}-1"
-  keys = [ibm_is_ssh_key.ssh_key.id]
-  image = data.ibm_is_image.ubuntu_image.id
-  profile = "cx2-2x4"
-  resource_group = data.ibm_resource_group.default.id
+# resource "ibm_is_instance" "web_server" {
+#   name = "web-server-1"
+#   vpc = ibm_is_vpc.ecommerce_vpc.id
+#   zone = "${var.region}-1"
+#   keys = [ibm_is_ssh_key.ssh_key.id]
+#   image = data.ibm_is_image.ubuntu_image.id
+#   profile = "cx2-2x4"
+#   resource_group = data.ibm_resource_group.default.id
 
-  primary_network_interface{
-    subnet = ibm_is_subnet.ecommerce_subnet.id
-  }
-}
+#   primary_network_interface{
+#     subnet = ibm_is_subnet.ecommerce_subnet.id
+#   }
+# }
