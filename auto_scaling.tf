@@ -11,6 +11,10 @@ resource "ibm_is_instance_template" "web_template" {
   primary_network_interface{
     subnet = ibm_is_subnet.ecommerce_subnet.id
   }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "ibm_is_instance_group" "web_asg" {
@@ -19,6 +23,10 @@ resource "ibm_is_instance_group" "web_asg" {
   subnets = [ibm_is_subnet.ecommerce_subnet.id]
   instance_count = 2
   resource_group = data.ibm_resource_group.default.id
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "ibm_is_instance_group_manager" "web_asg_manager" {
