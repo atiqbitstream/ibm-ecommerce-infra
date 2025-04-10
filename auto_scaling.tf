@@ -27,8 +27,7 @@ resource "ibm_is_instance_group" "web_asg" {
   load_balancer = ibm_is_lb.web_lb.id
   load_balancer_pool = ibm_is_lb_pool.web_pool.pool_id
   application_port = 80
-  depends_on = [ ibm_is_instance_template.web_template,
-  ibm_is_instance_group_manager.web_asg_manager
+  depends_on = [ ibm_is_instance_template.web_template
    ]
 
   lifecycle {
