@@ -1,6 +1,6 @@
 resource "ibm_is_lb" "web_lb" {
     name = "web-lb"
-    subnets = [ibm_is_subnet.ecommmerce_subnet.id]
+    subnets = [ibm_is_subnet.ecommerce_subnet.id]
     type = "public"
 
     # timeouts{

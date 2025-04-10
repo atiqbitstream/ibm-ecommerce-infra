@@ -9,14 +9,14 @@ resource "ibm_is_instance_template" "web_template" {
 
 #xtras
   primary_network_interface{
-    subnet = ibm_is_subnet.ecommmerce_subnet.id
+    subnet = ibm_is_subnet.ecommerce_subnet.id
   }
 }
 
 resource "ibm_is_instance_group" "web_asg" {
   name = "web-asg"
   instance_template = ibm_is_instance_template.web_template.id
-  subnets = [ibm_is_subnet.ecommmerce_subnet.id]
+  subnets = [ibm_is_subnet.ecommerce_subnet.id]
   instance_count = 2
   resource_group = data.ibm_resource_group.default.id
 }
